@@ -4,6 +4,10 @@ body {
   padding-top: 50px;
 }
 
+.navbar-inverse {
+  background-color: #073642; 
+}
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
@@ -17,13 +21,17 @@ body {
 
 .bar-graph li.red {
   width: 60%;
-  background: red;
+  background: #586e75;
 }
 .bar-graph li.green {
   width: 40%;
-  background: green;
+  background: #859900;
 }
 .bar-graph li.blue {
   width: 20%;
-  background: blue;
+  background: #cb4b16;
+}
+
+.questions {
+  list-style-type: upper-alpha;
 }
