@@ -1,0 +1,22 @@
+{
+  "qa": [
+    {
+      "question": "On average how many people are killed at work each year in the UK?",
+      "answers": [
+        120,
+        220,
+        320
+      ],
+      "answerIndex": 0
+    },
+    {
+      "question": "On average how many people are affected by x?",
+      "answers": [
+        140,
+        620,
+        220
+      ],
+      "answerIndex": 2
+    }
+  ]
+}
