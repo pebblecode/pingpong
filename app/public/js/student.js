@@ -7,6 +7,7 @@
       currentQuestion = myRootRef.child('currentQuestion'),
       studentAnswers = myRootRef.child('studentAnswers'),
       question = null,
+      currentQuestionText = null,
       answerIndex = null;
 
   function init() {
@@ -21,20 +22,27 @@
 
       if( question && question.answers ) {
 
-        displayQuestion();
+        // Hacky... Stop ourselves re-rendering the same question and removing our answer
+        if( question.question !== currentQuestionText ) {
 
-        currentQuestion.child('stopped').on('value', function(data) {
+          currentQuestionText = question.question;
 
-          if( data.val() ) {
+          displayQuestion();
 
-            revealAnswer();
+          currentQuestion.child('stopped').on('value', function(data) {
 
-          }
+            if( data.val() ) {
 
-        });
+              revealAnswer();
+
+            }
+
+          });
+
+        }
 
       } else {
-        console.warn('Invalid question', question);
+        console.log('Invalid question', question);
       }
 
     });
@@ -100,7 +108,7 @@
       if( yourAnswer > -1 ) {
 
         console.log('Incorrect!');
-        highlightIncorrectAnswer( answerIndex );
+        highlightIncorrectAnswer( yourAnswer );
         $('.student .message').text('Pong! You\'re wrong!').show();
 
       }
@@ -115,12 +123,6 @@
 
   }
 
-  function unlockAnswering() {
-
-    $('.answers a').removeClass('locked');
-
-  }
-
   function highlightCorrectAnswer( answIndex ) {
 
     $('.answers [data-answerindex='+answIndex+']').addClass('correct');
@@ -128,6 +130,8 @@
   }
 
   function highlightIncorrectAnswer( answIndex ) {
+
+    console.log('your incorrect answer:', answIndex);
 
     $('.answers [data-answerindex='+answIndex+']').addClass('incorrect');
 
@@ -155,8 +159,6 @@
     }
 
     answerIndex = null;
-
-    unlockAnswering();
 
   }
 
