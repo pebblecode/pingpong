@@ -17,18 +17,25 @@
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container">
+    <div class="main">
+    </div><!-- /.main -->
 
-      <h1 class="question">
-        On average how many people are killed at work each year in the UK?
-      </h1>
-
-    </div><!-- /.container -->
+    <script id="question-template" type="text/x-handlebars-template">
+      <div class="main">
+        <h1 class="question">
+          {{this}}
+        </h1>
+      </div>
+    </script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="vendor/jquery/jquery.min.js"><\/script>')</script>
 
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="vendor/handlebars/handlebars.js"></script>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
 
     <script src="js/classroom.js"></script>
 
