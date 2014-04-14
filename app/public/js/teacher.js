@@ -89,6 +89,7 @@
                 var percent = (value/sum)*100;
                 var index = i + 1;
                 $('.bar-graph li:nth-child(' + index + ')').css('width', percent + '%');
+                $('.bar-graph li:nth-child(' + index + ') span').text(percent + '%');
               }
             }
           }

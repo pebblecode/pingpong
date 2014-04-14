@@ -77,6 +77,12 @@ body {
   height: 30px;
   display: block;
   margin-bottom: 10px; }
+  .bar-graph li span {
+    margin: 5px;
+    border-radius: 2px;
+    background: white;
+    float: right;
+    color: black; }
 
 .bar-graph li.red {
   width: 0%;
