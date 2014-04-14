@@ -4,12 +4,46 @@
 .classroom .question {
   text-align: center; }
 
+.container.student {
+  padding: 10px; }
+  .container.student .question {
+    font-size: 1.3em;
+    text-align: center; }
+  .container.student .answers {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+    .container.student .answers li {
+      margin: 0 0 1em 0;
+      padding: 0; }
+      .container.student .answers li a {
+        display: block;
+        width: 80%;
+        padding: 2px;
+        margin: 0 auto;
+        min-height: 41px;
+        line-height: 41px;
+        font-size: 16px;
+        background-color: #eee;
+        text-align: center; }
+        .container.student .answers li a:hover {
+          text-decoration: none;
+          background-color: #ddd; }
+
 body {
   padding-top: 50px; }
+
+.navbar-inverse {
+  background-color: #073642; }
 
 .starter-template {
   padding: 40px 15px;
   text-align: center; }
+
+.bar-graph {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 10px; }
 
 .bar-graph li {
   height: 30px;
@@ -18,12 +52,15 @@ body {
 
 .bar-graph li.red {
   width: 60%;
-  background: red; }
+  background: #586e75; }
 
 .bar-graph li.green {
   width: 40%;
-  background: green; }
+  background: #859900; }
 
 .bar-graph li.blue {
   width: 20%;
-  background: blue; }
+  background: #cb4b16; }
+
+.questions {
+  list-style-type: upper-alpha; }

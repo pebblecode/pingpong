@@ -1,0 +1,41 @@
+.container.student {
+
+  padding: 10px;
+
+  .question {
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  .answers {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 0 0 1em 0;
+      padding: 0;
+
+      a {
+        display: block;
+        width: 80%;
+        padding: 2px;
+        margin: 0 auto;
+        min-height: 41px;
+        line-height: 41px;
+        font-size: 16px;
+        background-color: #eee;
+        text-align: center;
+
+        &:hover {
+          text-decoration: none;
+          background-color: #ddd;
+        }
+      }
+
+    }
+
+  }
+
+}
+
