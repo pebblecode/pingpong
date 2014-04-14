@@ -82,7 +82,7 @@
     if( yourAnswer === realAnswerIndex ) {
 
       console.log('Correct!');
-      $('.student .message').text('You got it, woah baby you got it!').show();
+      $('.student .message').text('Ping! You\'re right!').show();
 
     } else {
 
@@ -90,7 +90,7 @@
 
         console.log('Incorrect!');
         highlightIncorrectAnswer( answerIndex );
-        $('.student .message').text('Doh! Unlucky!').show();
+        $('.student .message').text('Pong! You\'re wrong!').show();
 
       }
 
