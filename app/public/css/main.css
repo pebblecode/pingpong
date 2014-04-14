@@ -1,8 +1,12 @@
+.classroom .container {
+  background-color: #9DBEF2;
+  padding: 20px 20px 30px; }
+.classroom .question {
+  text-align: center; }
+
 body {
-  padding-top: 50px;
-}
+  padding-top: 50px; }
 
 .starter-template {
   padding: 40px 15px;
-  text-align: center;
-}
+  text-align: center; }
