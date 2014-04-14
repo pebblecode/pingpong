@@ -6,7 +6,6 @@
   var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/'),
       currentQuestion = myRootRef.child('currentQuestion'),
       studentAnswers = myRootRef.child('studentAnswers'),
-      stopped = myRootRef.child('stopped'),
       question = null,
       answerIndex = null;
 
@@ -21,19 +20,21 @@
       console.log('data.val()', data.val());
 
       if( question && question.answers ) {
+
         displayQuestion();
+
+        currentQuestion.child('stopped').on('value', function(data) {
+
+          if( data.val() ) {
+
+            revealAnswer();
+
+          }
+
+        });
+
       } else {
         console.warn('Invalid question', question);
-      }
-
-    });
-
-    stopped.on('value', function(data) {
-
-      if( data.val() ) {
-
-        revealAnswer();
-
       }
 
     });
@@ -42,41 +43,56 @@
 
   function onAnswerClick(e) {
 
-    $('.answers li a').removeClass('selected');
+    e.preventDefault();
 
-    $(e.currentTarget).addClass('selected');
+    var $currentAnswerLink = $(e.currentTarget);
 
-    answerIndex = $(e.currentTarget).attr('data-answerindex');
+    if( !$currentAnswerLink.hasClass('locked') ) {
 
-    console.log( 'Answer:', answerIndex );
+      $('.answers li a').removeClass('selected');
 
-    studentAnswers.transaction(function(currentValue) {
-      if( !currentValue ) { currentValue = []; }
-      currentValue[answerIndex] = currentValue[answerIndex] || 0;
-      currentValue[answerIndex] = currentValue[answerIndex] + 1;
-      return currentValue;
-    });
+      $(e.currentTarget).addClass('selected');
 
-    lockAnswering();
+      answerIndex = $(e.currentTarget).attr('data-answerindex');
+
+      console.log( 'Answer:', answerIndex );
+
+      studentAnswers.transaction(function(currentValue) {
+        if( !currentValue ) { currentValue = []; }
+        currentValue[answerIndex] = currentValue[answerIndex] || 0;
+        currentValue[answerIndex] = currentValue[answerIndex] + 1;
+        return currentValue;
+      });
+
+      lockAnswering();
+
+    }
 
   }
 
   function revealAnswer() {
 
-    var realAnswerIndex = question.answerIndex;
+    lockAnswering();
+
+    var yourAnswer = answerIndex == null ? -1 : parseInt(answerIndex, 10),
+        realAnswerIndex = question.answerIndex;
 
     highlightCorrectAnswer( realAnswerIndex );
 
-    if( parseInt(answerIndex, 10) === realAnswerIndex ) {
+    if( yourAnswer === realAnswerIndex ) {
 
       console.log('Correct!');
       $('.student .message').text('You got it, woah baby you got it!').show();
 
     } else {
 
-      console.log('Incorrect!');
-      highlightIncorrectAnswer( answerIndex );
-      $('.student .message').text('Unlucky!').show();
+      if( !!yourAnswer ) {
+
+        console.log('Incorrect!');
+        highlightIncorrectAnswer( answerIndex );
+        $('.student .message').text('Doh! Unlucky!').show();
+
+      }
 
     }
 
@@ -126,6 +142,8 @@
       $('.student .answers').append( $answerLink.wrap('<li></li>').parent() );
 
     }
+
+    answerIndex = null;
 
     unlockAnswering();
 

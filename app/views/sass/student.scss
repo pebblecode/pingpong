@@ -37,6 +37,10 @@
           background-color: #ddd;
         }
 
+        &.locked {
+          cursor: default;
+        }
+
         &.selected {
           background-color: #ccc;
         }

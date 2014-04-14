@@ -32,6 +32,8 @@
           text-decoration: none; }
         .container.student .answers li a:not(.locked):hover {
           background-color: #ddd; }
+        .container.student .answers li a.locked {
+          cursor: default; }
         .container.student .answers li a.selected {
           background-color: #ccc; }
         .container.student .answers li a.correct {
