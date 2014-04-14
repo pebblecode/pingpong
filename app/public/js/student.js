@@ -4,8 +4,9 @@
   'use strict';
 
   var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/'),
-      currentQuestion = myRootRef.child("currentQuestion"),
+      currentQuestion = myRootRef.child('currentQuestion'),
       studentAnswers = myRootRef.child('studentAnswers'),
+      stopped = myRootRef.child('stopped'),
       question = null,
       answerIndex = null;
 
@@ -27,6 +28,16 @@
 
     });
 
+    stopped.on('value', function(data) {
+
+      if( data.val() ) {
+
+        revealAnswer();
+
+      }
+
+    })
+
   }
 
   function onAnswerClick(e) {
@@ -47,15 +58,6 @@
     });
 
     lockAnswering();
-
-    /*
-    // TEMP replace with event!
-    setTimeout(function() {
-
-      revealAnswer();
-
-    }, 2000);
-    */
 
   }
 
