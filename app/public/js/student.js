@@ -101,7 +101,7 @@
     if( yourAnswer === realAnswerIndex ) {
 
       console.log('Correct!');
-      $('.student .message').text('Ping! You\'re right!').show();
+      $('.student .message').text('Ping! You\'re win!').show();
 
     } else {
 
