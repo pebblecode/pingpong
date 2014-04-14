@@ -38,6 +38,12 @@
         .container.student .answers li a.incorrect {
           background-color: #b94a48; }
 
+.message {
+  display: none;
+  color: #666;
+  font-size: 1.2em;
+  text-align: center; }
+
 body {
   padding-top: 50px; }
 

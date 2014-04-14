@@ -30,6 +30,13 @@
 
     console.log( 'Answer:', answerIndex );
 
+    // TEMP replace with event!
+    setTimeout(function() {
+
+      revealAnswer();
+
+    }, 2000);
+
   }
 
   function revealAnswer() {
@@ -37,15 +44,17 @@
     var realAnswerIndex = questions[ questionIndex ].answerIndex;
 
     highlightCorrectAnswer( realAnswerIndex );
-    
+
     if( parseInt(answerIndex) === realAnswerIndex ) {
 
       console.log('Correct!');
+      $('.student .message').text('You got it, woah baby you got it!').show();
 
     } else {
 
       console.log('Incorrect!');
       highlightIncorrectAnswer( answerIndex );
+      $('.student .message').text('Unlucky!').show();
 
     }
 
@@ -72,6 +81,7 @@
 
     $('.student .question').html( question.question );
     $('.student .answers').empty();
+    $('.student .message').hide();
 
     for( var i=0; i < answers.length; i++ ) {
 
@@ -85,13 +95,6 @@
       $('.student .answers').append( $answerLink.wrap('<li></li>').parent() );
 
     }
-
-    // TEMP replace with event!
-    setTimeout(function() {
-
-      revealAnswer();
-
-    }, 5000);
 
   }
 
