@@ -1,9 +1,13 @@
-/*global Handlebars:true */
+/*global Firebase:true, Handlebars:true */
 (function (){
   'use strict';
 
-  //var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/');
   var questionData;
+  var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/');
+
+  function updateCurrentQuestion(q) {
+    myRootRef.child("currentQuestion").set(q);
+  }
 
   function init() {
     $.getJSON('/data/sample.json', function(dataVal) {
@@ -33,16 +37,17 @@
         });
         var questionContainer = $(".question");
         questionContainer.empty().append(question);
+
+        $("#start-question").click(function(e) {
+          var questionIndex = $(e.target).data("question");
+
+          updateCurrentQuestion(questionData[questionIndex]);
+        });
       });
 
     });
 
   }
-
-  $(".start-button").click(function() {
-    console.log("start");
-  });
-
 
   init();
 
