@@ -6,3 +6,22 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+.bar-graph li {
+  height: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.bar-graph li.red {
+  width: 60%;
+  background: red;
+}
+.bar-graph li.green {
+  width: 40%;
+  background: green;
+}
+.bar-graph li.blue {
+  width: 20%;
+  background: blue;
+}
