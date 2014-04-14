@@ -73,6 +73,27 @@
           stopButton.addClass("disabled");
           startButton.removeClass("disabled");
         });
+
+
+
+        var studentAnswers = myRootRef.child("studentAnswers");
+
+        studentAnswers.on('value', function(data) {
+          data = data.val();
+          if (data !== null) {
+            var sum = _.reduce(data, function(memo, num){ return memo + num; }, 0);
+            var arrayLength = data.length;
+            if (arrayLength !== null) {
+              for (var i = 0; i < arrayLength; i++) {
+                var value = data[i] || 0;
+                var percent = (value/sum)*100;
+                var index = i + 1;
+                $('.bar-graph li:nth-child(' + index + ')').css('width', percent + '%');
+              }
+            }
+          }
+        });
+
       });
 
     });
