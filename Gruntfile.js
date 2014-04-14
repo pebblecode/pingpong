@@ -67,6 +67,11 @@ module.exports = function (grunt) {
       karmaConfig: {
         src: ['config/karma.conf.js']
       },
+      data: {
+        src: [
+          '<%= app.publicBase %>/data/*.json'
+        ]
+      },
       js: {
         src: [
           '<%= app.publicBase %>/js/*.js',
@@ -118,6 +123,12 @@ module.exports = function (grunt) {
       gruntfile: {
         files: 'Gruntfile.js',
         tasks: ['jshint:gruntfile']
+      },
+      data: {
+        files: [
+          '<%= jshint.data.src %>'
+        ],
+        tasks: ['jshint:data']
       },
       scripts: {
         files: [
