@@ -1,0 +1,29 @@
+body {
+  padding-top: 50px; }
+
+.navbar-inverse {
+  background-color: #073642; }
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center; }
+
+.bar-graph li {
+  height: 30px;
+  display: block;
+  margin-bottom: 10px; }
+
+.bar-graph li.red {
+  width: 60%;
+  background: #586e75; }
+
+.bar-graph li.green {
+  width: 40%;
+  background: #859900; }
+
+.bar-graph li.blue {
+  width: 20%;
+  background: #cb4b16; }
+
+.questions {
+  list-style-type: upper-alpha; }
