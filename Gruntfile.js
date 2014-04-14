@@ -158,6 +158,7 @@ module.exports = function (grunt) {
       },
       html: {
         files: [
+          '<%= app.publicBase %>/**/*.html',
           '<%= app.publicBase %>/*.html',
           '<%= app.publicBase %>/*.htm',
           '<%= app.publicBase %>/css/*.css'
