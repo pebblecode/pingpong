@@ -40,11 +40,13 @@
     console.log( 'Answer:', answerIndex );
 
     studentAnswers.transaction(function(currentValue) {
-      if( !currentValue ) currentValue = [];
+      if( !currentValue ) { currentValue = []; }
       currentValue[answerIndex] = currentValue[answerIndex] || 0;
       currentValue[answerIndex] = currentValue[answerIndex] + 1;
       return currentValue;
     });
+
+    lockAnswering();
 
     /*
     // TEMP replace with event!
@@ -75,6 +77,18 @@
       $('.student .message').text('Unlucky!').show();
 
     }
+
+  }
+
+  function lockAnswering() {
+
+    $('.answers a').addClass('locked');
+
+  }
+
+  function unlockAnswering() {
+
+    $('.answers a').removeClass('locked');
 
   }
 
@@ -110,6 +124,8 @@
       $('.student .answers').append( $answerLink.wrap('<li></li>').parent() );
 
     }
+
+    unlockAnswering();
 
   }
 
