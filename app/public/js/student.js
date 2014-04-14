@@ -1,18 +1,29 @@
+/* global Firebase */
+
 (function (){
   'use strict';
 
-  var questions = [],
-      questionIndex = 0,
+  var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/'),
+      currentQuestion = myRootRef.child("currentQuestion"),
+      studentAnswers = myRootRef.child('studentAnswers'),
+      question = null,
       answerIndex = null;
 
   function init() {
 
-    $.getJSON('/data/sample.json', function(data) {
+    currentQuestion.on('value', function(data) {
 
-      questions = data.qa;
+      console.log('data', data);
 
-      // TODO on event...
-      displayQuestion(0);
+      question = data.val();
+
+      console.log('data.val()', data.val());
+
+      if( question && question.answers ) {
+        displayQuestion();
+      } else {
+        console.warn('Invalid question', question);
+      }
 
     });
 
@@ -28,18 +39,27 @@
 
     console.log( 'Answer:', answerIndex );
 
+    studentAnswers.transaction(function(currentValue) {
+      if( !currentValue ) currentValue = [];
+      currentValue[answerIndex] = currentValue[answerIndex] || 0;
+      currentValue[answerIndex] = currentValue[answerIndex] + 1;
+      return currentValue;
+    });
+
+    /*
     // TEMP replace with event!
     setTimeout(function() {
 
       revealAnswer();
 
     }, 2000);
+    */
 
   }
 
   function revealAnswer() {
 
-    var realAnswerIndex = questions[ questionIndex ].answerIndex;
+    var realAnswerIndex = question.answerIndex;
 
     highlightCorrectAnswer( realAnswerIndex );
 
@@ -70,12 +90,9 @@
 
   }
 
-  function displayQuestion(quIndex) {
+  function displayQuestion() {
 
-    questionIndex = quIndex;
-
-    var question = questions[questionIndex],
-        answers = question.answers;
+    var answers = question.answers;
 
     $('.student .question').html( question.question );
     $('.student .answers').empty();
