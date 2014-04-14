@@ -1,4 +1,4 @@
-/* global Firebase */
+/* global Firebase, FastClick */
 
 (function (){
   'use strict';
@@ -37,6 +37,11 @@
         console.warn('Invalid question', question);
       }
 
+    });
+
+    // FastClick, to get rid of 300ms click delay on mobile
+    $(function() {
+      FastClick.attach(document.body);
     });
 
   }
