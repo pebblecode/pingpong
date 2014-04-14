@@ -5,6 +5,20 @@ body {
   padding-top: 50px;
 }
 
+.navbar-brand {
+  display: block;
+  width: 139px;
+  height: 40px;
+  background: url(/img/pingpong.png) top left no-repeat;
+  background-size: 139px 40px;
+  margin: 5px 0;
+
+  span {
+    display: none;
+  }
+
+}
+
 .navbar-inverse {
   background-color: #073642;
 }
@@ -27,15 +41,15 @@ body {
 }
 
 .bar-graph li.red {
-  width: 60%;
+  width: 0%;
   background: #586e75;
 }
 .bar-graph li.green {
-  width: 40%;
+  width: 0%;
   background: #859900;
 }
 .bar-graph li.blue {
-  width: 20%;
+  width: 0%;
   background: #cb4b16;
 }
 

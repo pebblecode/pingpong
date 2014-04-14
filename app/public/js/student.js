@@ -1,4 +1,4 @@
-/* global Firebase */
+/* global Firebase, FastClick */
 
 (function (){
   'use strict';
@@ -39,6 +39,11 @@
 
     });
 
+    // FastClick, to get rid of 300ms click delay on mobile
+    $(function() {
+      FastClick.attach(document.body);
+    });
+
   }
 
   function onAnswerClick(e) {
@@ -64,6 +69,8 @@
         return currentValue;
       });
 
+      $('.student .message').text('Thanks. Waiting for correct answer to be revealed...').show();
+      
       lockAnswering();
 
     }
@@ -82,7 +89,7 @@
     if( yourAnswer === realAnswerIndex ) {
 
       console.log('Correct!');
-      $('.student .message').text('You got it, woah baby you got it!').show();
+      $('.student .message').text('Ping! You\'re right!').show();
 
     } else {
 
@@ -90,7 +97,7 @@
 
         console.log('Incorrect!');
         highlightIncorrectAnswer( answerIndex );
-        $('.student .message').text('Doh! Unlucky!').show();
+        $('.student .message').text('Pong! You\'re wrong!').show();
 
       }
 
