@@ -1,5 +1,3 @@
-/* global alert */
-
 (function (){
   'use strict';
 
@@ -45,7 +43,7 @@
 
     highlightCorrectAnswer( realAnswerIndex );
 
-    if( parseInt(answerIndex) === realAnswerIndex ) {
+    if( parseInt(answerIndex, 10) === realAnswerIndex ) {
 
       console.log('Correct!');
       $('.student .message').text('You got it, woah baby you got it!').show();
