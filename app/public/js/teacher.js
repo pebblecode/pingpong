@@ -13,7 +13,7 @@
   }
 
   function init() {
-    $.getJSON('/data/sample.json', function(dataVal) {
+    $.getJSON('/data/sample.json?v=1', function(dataVal) {
       var data = dataVal.qa;
       questionData = dataVal.qa;
       var questions = [];
