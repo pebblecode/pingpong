@@ -69,6 +69,8 @@
         return currentValue;
       });
 
+      $('.student .message').text('Thanks. Waiting for correct answer to be revealed...').show();
+      
       lockAnswering();
 
     }
