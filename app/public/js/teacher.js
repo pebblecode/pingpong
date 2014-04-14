@@ -4,9 +4,10 @@
 
   var questionData;
   var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/');
+  var currentQuestion = myRootRef.child("currentQuestion");
 
   function updateCurrentQuestion(q) {
-    myRootRef.child("currentQuestion").set(q);
+    currentQuestion.set(q);
   }
 
   function init() {
@@ -42,6 +43,12 @@
           var questionIndex = $(e.target).data("question");
 
           updateCurrentQuestion(questionData[questionIndex]);
+        });
+
+        $("#stop-question").click(function(e) {
+          var questionIndex = $(e.target).data("question");
+
+          currentQuestion.remove();
         });
       });
 
