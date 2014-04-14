@@ -47,8 +47,6 @@
         });
 
         $("#stop-question").click(function(e) {
-          var questionIndex = $(e.target).data("question");
-
           currentQuestion.remove();
         });
       });
