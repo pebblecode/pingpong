@@ -34,7 +34,8 @@
         var questionTemplate = $("#question-template").html();
         var question = Handlebars.compile(questionTemplate)({
           question: questionData[questionIndex].question,
-          id: questionIndex
+          id: questionIndex,
+          answers: questionData[questionIndex].answers
         });
         var questionContainer = $(".question");
         questionContainer.empty().append(question);
