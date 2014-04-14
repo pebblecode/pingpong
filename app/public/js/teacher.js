@@ -5,6 +5,7 @@
   var questionData;
   var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/');
   var currentQuestion = myRootRef.child("currentQuestion");
+  var studentAnswers = myRootRef.child("studentAnswers");
 
   function updateCurrentQuestion(q) {
     currentQuestion.set(q);
@@ -43,6 +44,10 @@
         $("#start-question").click(function(e) {
           var questionIndex = $(e.target).data("question");
 
+          // Reset student answers
+          studentAnswers.remove();
+
+          // Update question
           updateCurrentQuestion(questionData[questionIndex]);
         });
 
