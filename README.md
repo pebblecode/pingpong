@@ -1,6 +1,6 @@
 # Ping pong
 
-A website built using [generator-starttter](https://github.com/taktran/generator-starttter).
+A web based, multi device, classroom interaction tool.
 
 ## Development
 
