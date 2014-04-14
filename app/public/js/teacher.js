@@ -33,6 +33,8 @@
       $(".questions-list ul li a").click(function(e) {
         e.preventDefault();
         currentQuestion.remove();
+        studentAnswers.remove();
+
         var questionIndex = $(e.target).data('id');
         var questionTemplate = $("#question-template").html();
         var question = Handlebars.compile(questionTemplate)({
