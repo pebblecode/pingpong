@@ -33,7 +33,9 @@
       $(".questions-list ul li a").click(function(e) {
         e.preventDefault();
         currentQuestion.remove();
-        studentAnswers.remove();
+        if (studentAnswers) {
+          studentAnswers.remove();
+        }
 
         var questionIndex = $(e.target).data('id');
         var questionTemplate = $("#question-template").html();
@@ -73,10 +75,6 @@
           stopButton.addClass("disabled");
           startButton.removeClass("disabled");
         });
-
-
-
-        var studentAnswers = myRootRef.child("studentAnswers");
 
         studentAnswers.on('value', function(data) {
           data = data.val();
