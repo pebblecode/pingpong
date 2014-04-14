@@ -32,6 +32,7 @@
 
       $(".questions-list ul li a").click(function(e) {
         e.preventDefault();
+        currentQuestion.remove();
         var questionIndex = $(e.target).data('id');
         var questionTemplate = $("#question-template").html();
         var question = Handlebars.compile(questionTemplate)({
@@ -61,7 +62,10 @@
         });
 
         stopButton.click(function(e) {
-          currentQuestion.remove();
+          var questionIndex = $(e.target).data("question");
+          var updateData = questionData[questionIndex];
+          updateData.stopped = true;
+          updateCurrentQuestion(updateData);
 
           // Disable stop button and enable start again
           stopButton.addClass("disabled");
