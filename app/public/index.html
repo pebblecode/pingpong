@@ -33,12 +33,7 @@
     <div class="container-fluid">
 
       <div class="row">
-        <div class="col-md-2">
-          <ul class="nav nav-tabs">
-            <li>What is the meaning of life?</li>
-            <li>What time is lunch?</li>
-            <li>What time do we go home?</li>
-          </ul>
+        <div class="questions-list col-md-2">
         </div>
 
         <div class="col-md-10">
@@ -49,7 +44,7 @@
               <li>220</li>
               <li>320</li>
             </ul>
-            <input type='submit' class='btn btn-default' value='Start' />
+            <input type='submit' class='btn btn-default start-button' value='Start' />
             <input type='submit' class='btn btn-default' value='Stop' />
           </div>
           <div class='row'>
@@ -64,11 +59,23 @@
 
     </div><!-- /.container -->
 
+    <script id="questions-list-template" type="text/x-handlebars-template">
+      <ul class="nav nav-tabs">
+        {{#each questions}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+
+    </script>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="vendor/jquery/jquery.min.js"><\/script>')</script>
 
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <script src="vendor/handlebars/handlebars.js"></script>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
     <script src="js/teacher.js"></script>
 
     <script>
@@ -77,6 +84,6 @@
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
-    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+
   </body>
 </html>
