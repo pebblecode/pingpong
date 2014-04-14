@@ -37,16 +37,7 @@
         </div>
 
         <div class="col-md-10">
-          <div class='row'>
-            <h2>On average how many people are killed at work each year in the UK</h2>
-            <ul class="questions">
-              <li>120</li>
-              <li>220</li>
-              <li>320</li>
-            </ul>
-
-            <input type='submit' id="start-question" class='btn btn-default' value='Start' data-question="0" />
-            <input type='submit' id="stop-question" class='btn btn-default' value='Stop' data-question="0" />
+          <div class='row question'>
           </div>
           <div class='row'>
             <ul class="bar-graph">
@@ -66,6 +57,19 @@
           <li><a data-id="{{@index}}" href="">{{this}}</a></li>
         {{/each}}
       </ul>
+
+    </script>
+
+    <script id="question-template" type="text/x-handlebars-template">
+      <h2>{{question}}</h2>
+      <ul class="questions">
+        {{#each answers}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+
+      <input type='submit' id="start-question" class='btn btn-default' value='Start' data-question="{{id}}" />
+      <input type='submit' id="stop-question" class='btn btn-default' value='Stop' data-question="{{id}}" />
 
     </script>
 
