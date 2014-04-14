@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Ping pong</title>
+    <title>Ping pong: teacher</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -33,43 +33,59 @@
     <div class="container-fluid">
 
       <div class="row">
-        <div class="col-md-2">
-          <ul class="nav nav-tabs">
-            <li>What is the meaning of life?</li>
-            <li>What time is lunch?</li>
-            <li>What time do we go home?</li>
-          </ul>
+        <div class="questions-list col-md-2">
         </div>
 
         <div class="col-md-10">
-          <div class='row'>
-            <h2>On average how many people are killed at work each year in the UK</h2>
-            <ul>
-              <li>120</li>
-              <li>220</li>
-              <li>320</li>
-            </ul>
-            <input type='submit' class='btn btn-default' value='Start' />
-            <input type='submit' class='btn btn-default' value='Stop' />
-          </div>
-          <div class='row'>
-            <ul class="bar-graph">
-              <li class="red">A</li>
-              <li class="blue">B</li>
-              <li class="green">C</li>
-            </ul>
+          <div class='row question'>
           </div>
         </div>
       </div>
 
     </div><!-- /.container -->
 
+    <script id="questions-list-template" type="text/x-handlebars-template">
+      <ul class="nav nav-tabs">
+        {{#each questions}}
+          <li><a data-id="{{@index}}" href="">{{this}}</a></li>
+        {{/each}}
+        {{#each answers}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+
+    </script>
+
+    <script id="question-template" type="text/x-handlebars-template">
+      <h2>{{question}}</h2>
+      <ul class="questions">
+        {{#each answers}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+
+      <input type='submit' id="start-question" class='btn btn-default' value='Start' data-question="{{id}}" />
+      <input type='submit' id="stop-question" class='btn btn-default' value='Stop' data-question="{{id}}" />
+
+      <div class='row'>
+        <ul class="bar-graph">
+          <li class="red">A</li>
+          <li class="blue">B</li>
+          <li class="green">C</li>
+        </ul>
+      </div>
+
+    </script>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="vendor/jquery/jquery.min.js"><\/script>')</script>
 
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <script src="js/main.js"></script>
+    <script src="vendor/handlebars/handlebars.js"></script>
+
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+    <script src="js/teacher.js"></script>
 
     <script>
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
@@ -77,10 +93,6 @@
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
-    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
-    <script type='text/javascript'>
-    var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/');
-    myRootRef.set('Hello World');
-    </script>
+
   </body>
 </html>
