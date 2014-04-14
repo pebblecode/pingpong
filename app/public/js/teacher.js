@@ -58,7 +58,9 @@
           studentAnswers.remove();
 
           // Update question
-          updateCurrentQuestion(questionData[questionIndex]);
+          var updateData = questionData[questionIndex];
+          updateData.stopped = false;
+          updateCurrentQuestion(updateData);
 
           // Disable start button and enable stop button
           startButton.addClass("disabled");
