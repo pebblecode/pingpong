@@ -10,11 +10,11 @@
       "answerIndex": 0
     },
     {
-      "question": "On average how many people are affected by x?",
+      "question": "Which of the following are true?",
       "answers": [
-        140,
-        620,
-        220
+        "Usually, the higher the risk level, the more action needs to be taken",
+        "There’s only one way to carry out a risk assessment",
+        "Risk action levels are the same for every company"
       ],
       "answerIndex": 2
     }

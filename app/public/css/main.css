@@ -19,15 +19,15 @@
       padding: 0; }
       .container.student .answers li a {
         display: block;
-        width: 80%;
-        padding: 2px;
+        width: 100%;
+        padding: 10px;
         margin: 0 auto;
         min-height: 41px;
-        line-height: 41px;
         font-size: 16px;
         color: #333;
         background-color: #eee;
-        text-align: center; }
+        text-align: center;
+        line-height: 1.2em; }
         .container.student .answers li a:hover {
           text-decoration: none; }
         .container.student .answers li a:not(.locked):hover {
