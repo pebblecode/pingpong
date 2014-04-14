@@ -1,6 +1,7 @@
 .container.student {
   padding: 10px; }
   .container.student .question {
+    margin: 1.5em 0;
     font-size: 1.3em;
     text-align: center; }
   .container.student .answers {
@@ -18,11 +19,18 @@
         min-height: 41px;
         line-height: 41px;
         font-size: 16px;
+        color: #333;
         background-color: #eee;
         text-align: center; }
         .container.student .answers li a:hover {
           text-decoration: none;
           background-color: #ddd; }
+        .container.student .answers li a.selected {
+          background-color: #ccc; }
+        .container.student .answers li a.correct {
+          background-color: #449d44; }
+        .container.student .answers li a.incorrect {
+          background-color: #b94a48; }
 
 body {
   padding-top: 50px; }

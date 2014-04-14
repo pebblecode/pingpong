@@ -3,46 +3,69 @@
 (function (){
   'use strict';
 
-  var questions = [];
+  var questions = [],
+      questionIndex = 0,
+      answerIndex = null;
 
   function init() {
 
-    // XXX Duplicated temporarily!
-    questions = [
-      {
-        "question": "On average how many people are killed at work each year in the UK?",
-        "answers": [
-          120,
-          220,
-          320
-        ],
-        "answerIndex": 0
-      },
-      {
-        "question": "On average how many people are affected by x?",
-        "answers": [
-          140,
-          620,
-          220
-        ],
-        "answerIndex": 2
-      }
-    ];
+    $.getJSON('/data/sample.json', function(data) {
 
-    // TODO on event...
-    displayQuestion(0);
+      questions = data.qa;
+
+      // TODO on event...
+      displayQuestion(0);
+
+    });
 
   }
 
   function onAnswerClick(e) {
 
-    var answerIndex = $(e.currentTarget).attr('data-answerindex');
+    $('.answers li a').removeClass('selected');
 
-    alert( answerIndex );
+    $(e.currentTarget).addClass('selected');
+
+    answerIndex = $(e.currentTarget).attr('data-answerindex');
+
+    console.log( 'Answer:', answerIndex );
 
   }
 
-  function displayQuestion(questionIndex) {
+  function revealAnswer() {
+
+    var realAnswerIndex = questions[ questionIndex ].answerIndex;
+
+    highlightCorrectAnswer( realAnswerIndex );
+    
+    if( parseInt(answerIndex) === realAnswerIndex ) {
+
+      console.log('Correct!');
+
+    } else {
+
+      console.log('Incorrect!');
+      highlightIncorrectAnswer( answerIndex );
+
+    }
+
+  }
+
+  function highlightCorrectAnswer( answIndex ) {
+
+    $('.answers [data-answerindex='+answIndex+']').addClass('correct');
+
+  }
+
+  function highlightIncorrectAnswer( answIndex ) {
+
+    $('.answers [data-answerindex='+answIndex+']').addClass('incorrect');
+
+  }
+
+  function displayQuestion(quIndex) {
+
+    questionIndex = quIndex;
 
     var question = questions[questionIndex],
         answers = question.answers;
@@ -62,6 +85,13 @@
       $('.student .answers').append( $answerLink.wrap('<li></li>').parent() );
 
     }
+
+    // TEMP replace with event!
+    setTimeout(function() {
+
+      revealAnswer();
+
+    }, 5000);
 
   }
 
