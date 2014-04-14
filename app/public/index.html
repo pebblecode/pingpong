@@ -63,7 +63,7 @@
     <script id="questions-list-template" type="text/x-handlebars-template">
       <ul class="nav nav-tabs">
         {{#each questions}}
-          <li><a href="">{{this}}</a></li>
+          <li><a data-id="{{@index}}" href="">{{this}}</a></li>
         {{/each}}
       </ul>
 
