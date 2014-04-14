@@ -81,6 +81,10 @@
 
     lockAnswering();
 
+    if( !question ) {
+      return;
+    }
+
     var yourAnswer = answerIndex == null ? -1 : parseInt(answerIndex, 10),
         realAnswerIndex = question.answerIndex;
 
@@ -93,7 +97,7 @@
 
     } else {
 
-      if( !!yourAnswer ) {
+      if( yourAnswer > -1 ) {
 
         console.log('Incorrect!');
         highlightIncorrectAnswer( answerIndex );
