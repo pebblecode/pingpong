@@ -2,6 +2,10 @@
 module.exports = function (grunt) {
   'use strict';
 
+  var echoCmd = function(cmd) {
+    return "echo '" + cmd + "'";
+  };
+
   var appConfig = {
     root: "app",
     dist: "dist",
@@ -164,6 +168,52 @@ module.exports = function (grunt) {
       }
     },
 
+    shell: {
+      init: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: function() {
+          var stagingInit = "git remote add staging git@heroku.com:pearson-ping-pong.git";
+          var commands = [
+            echoCmd(stagingInit),
+            stagingInit
+          ];
+
+          return commands.join('; ');
+        }
+      },
+      deployStaging: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: function() {
+          var branch = grunt.option('branch');
+          var force = grunt.option('force');
+          var stagingDeployCmd = "git push staging";
+
+          if (branch) {
+            stagingDeployCmd = stagingDeployCmd + " " + branch + ":master";
+          } else {
+            stagingDeployCmd = stagingDeployCmd + " master";
+          }
+
+          if (force) {
+            stagingDeployCmd = stagingDeployCmd + " -f";
+          }
+
+          var commands = [
+            echoCmd(stagingDeployCmd),
+            stagingDeployCmd
+          ];
+
+          return commands.join('; ');
+        }
+      }
+    },
+
     open: {
       all: {
         path: 'http://<%= app.hostname %>:<%= app.port %>'
@@ -186,5 +236,8 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'karma:unit:run'
   ]);
+
+  grunt.registerTask( 'deploy:init', ['shell:init'] );
+  grunt.registerTask( 'deploy:staging', ['shell:deployStaging'] );
 
 };

@@ -39,3 +39,27 @@ For continuous integration, run
     # Or,
 
     npm test
+
+## Deployment
+
+Before being able to deploy, you will need to setup your environmnet, with
+
+    grunt deploy:init
+
+### Staging
+
+The staging site is hosted on heroku: http://pebblecode-staging.herokuapp.com/
+
+To push the master branch to staging, run:
+
+    grunt deploy:staging
+
+Or if you want a particular branch, run:
+
+    grunt deploy:staging --branch branch-name
+
+where `branch-name` is the branch you want to push.
+
+If there are errors with the push eg, `error: failed to push some refs`, you can add the `--force` flag eg,
+
+    grunt deploy:staging --force
