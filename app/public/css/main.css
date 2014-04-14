@@ -29,7 +29,8 @@
         background-color: #eee;
         text-align: center; }
         .container.student .answers li a:hover {
-          text-decoration: none;
+          text-decoration: none; }
+        .container.student .answers li a:not(.locked):hover {
           background-color: #ddd; }
         .container.student .answers li a.selected {
           background-color: #ccc; }

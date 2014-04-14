@@ -31,6 +31,9 @@
 
         &:hover {
           text-decoration: none;
+        }
+
+        &:not(.locked):hover {
           background-color: #ddd;
         }
 
