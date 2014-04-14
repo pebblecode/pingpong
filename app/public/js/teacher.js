@@ -3,8 +3,10 @@
   'use strict';
 
   var questionData;
+
   var myRootRef = new Firebase('https://pingpongapp.firebaseio.com/');
   var currentQuestion = myRootRef.child("currentQuestion");
+  var studentAnswers = myRootRef.child("studentAnswers");
 
   function updateCurrentQuestion(q) {
     currentQuestion.set(q);
@@ -38,16 +40,32 @@
           answers: questionData[questionIndex].answers
         });
         var questionContainer = $(".question");
+
         questionContainer.empty().append(question);
 
-        $("#start-question").click(function(e) {
+
+        var startButton = $("#start-question");
+        var stopButton = $("#stop-question");
+        startButton.click(function(e) {
           var questionIndex = $(e.target).data("question");
 
+          // Reset student answers
+          studentAnswers.remove();
+
+          // Update question
           updateCurrentQuestion(questionData[questionIndex]);
+
+          // Disable start button and enable stop button
+          startButton.addClass("disabled");
+          stopButton.removeClass("disabled");
         });
 
-        $("#stop-question").click(function(e) {
+        stopButton.click(function(e) {
           currentQuestion.remove();
+
+          // Disable stop button and enable start again
+          stopButton.addClass("disabled");
+          startButton.removeClass("disabled");
         });
       });
 
