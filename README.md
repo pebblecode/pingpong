@@ -48,7 +48,7 @@ Before being able to deploy, you will need to setup your environmnet, with
 
 ### Staging
 
-The staging site is hosted on heroku: http://pebblecode-staging.herokuapp.com/
+The staging site is hosted on heroku: http://pearson-ping-pong.herokuapp.com/
 
 To push the master branch to staging, run:
 
